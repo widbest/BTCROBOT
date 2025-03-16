@@ -11,9 +11,9 @@ class NewsAnalyzer:
     def __init__(self):
         # تحسين التعامل مع مفتاح API
         try:
-            self.api_key = os.getenv6139e3c32b244a60921dae43dd16e73f
-            if not self.api_key and hasattr(st, 'secrets') and 6139e3c32b244a60921dae43dd16e73f in st.secrets:
-                self.api_key = st.secrets6139e3c32b244a60921dae43dd16e73f
+            self.api_key = os.getenv("NEWS_API_KEY")
+            if not self.api_key and hasattr(st, 'secrets') and "NEWS_API_KEY" in st.secrets:
+                self.api_key = st.secrets["NEWS_API_KEY"]
             
             if not self.api_key:
                 print("⚠️ مفتاح API للأخبار غير متوفر")
