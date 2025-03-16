@@ -94,7 +94,7 @@ class NewsAnalyzer:
         if self.last_fetch and (now - self.last_fetch) < self.cache_duration:
             return self.news_cache
 
-        endpoint = "https://newsapi.org/v2/everything"
+        endpoint = "https://newsapi.org/v2/everything?q=bitcoin&apiKey=6139e3c32b244a60921dae43dd16e73f"
         params = {
             "q": "(bitcoin OR btc OR cryptocurrency) AND (price OR trading OR market)",
             "language": "en",
