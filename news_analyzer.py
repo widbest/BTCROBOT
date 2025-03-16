@@ -16,9 +16,9 @@ class NewsAnalyzer:
         
         # Keep the original code for fallback (in case you want to change the key later via environment variables)
         if not self.api_key:
-            self.api_key = os.getenv("NEWS_API_KEY")
-            if not self.api_key and hasattr(st, 'secrets') and "NEWS_API_KEY" in st.secrets:
-                self.api_key = st.secrets["NEWS_API_KEY"]
+            self.api_key = os.getenv("6139e3c32b244a60921dae43dd16e73f")
+            if not self.api_key and hasattr(st, 'secrets') and "6139e3c32b244a60921dae43dd16e73f" in st.secrets:
+                self.api_key = st.secrets["6139e3c32b244a60921dae43dd16e73f"]
         
         if not self.api_key:
             print("⚠️ مفتاح API للأخبار غير متوفر")
