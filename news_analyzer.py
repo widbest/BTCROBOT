@@ -22,7 +22,7 @@ class NewsAnalyzer:
         
         if not self.api_key:
             print("⚠️ مفتاح API للأخبار غير متوفر")
-            self.api_key = None
+            self.api_key = "6139e3c32b244a60921dae43dd16e73f"
         
         # تهيئة NLTK
         try:
