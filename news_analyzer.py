@@ -9,34 +9,38 @@ import pandas as pd
 
 class NewsAnalyzer:
     def __init__(self):
-        # تحسين التعامل مع مفتاح API
-        try:
-            export NEWS_API_KEY="6139e3c32b244a60921dae43dd16e73f"
+    # تحسين التعامل مع مفتاح API
+    try:
+        # Add the API key directly in the code
+        self.api_key = "6139e3c32b244a60921dae43dd16e73f"
+        
+        # Keep the original code for fallback (in case you want to change the key later via environment variables)
+        if not self.api_key:
             self.api_key = os.getenv("NEWS_API_KEY")
             if not self.api_key and hasattr(st, 'secrets') and "NEWS_API_KEY" in st.secrets:
                 self.api_key = st.secrets["NEWS_API_KEY"]
-            
-            if not self.api_key:
-                print("⚠️ مفتاح API للأخبار غير متوفر")
-                self.api_key = None
-            
-            # تهيئة NLTK
-            try:
-                nltk.data.find('vader_lexicon')
-            except LookupError:
-                nltk.download('vader_lexicon')
-
-            self.sia = SentimentIntensityAnalyzer()
-            self.cached_sentiment = 0
-            self.last_update = datetime.now() - timedelta(hours=1)  # لضمان التحديث الأول
-            
-            # تهيئة مخزن الأخبار
-            self.news_cache = []
-            self.last_fetch = None
-            self.cache_duration = timedelta(minutes=15)
-        except Exception as e:
-            print(f"خطأ في تهيئة محلل الأخبار: {str(e)}")
+        
+        if not self.api_key:
+            print("⚠️ مفتاح API للأخبار غير متوفر")
             self.api_key = None
+        
+        # تهيئة NLTK
+        try:
+            nltk.data.find('vader_lexicon')
+        except LookupError:
+            nltk.download('vader_lexicon')
+
+        self.sia = SentimentIntensityAnalyzer()
+        self.cached_sentiment = 0
+        self.last_update = datetime.now() - timedelta(hours=1)  # لضمان التحديث الأول
+        
+        # تهيئة مخزن الأخبار
+        self.news_cache = []
+        self.last_fetch = None
+        self.cache_duration = timedelta(minutes=15)
+    except Exception as e:
+        print(f"خطأ في تهيئة محلل الأخبار: {str(e)}")
+        self.api_key = None
 
     def get_sentiment(self):
         """الحصول على تحليل المشاعر من الأخبار"""
